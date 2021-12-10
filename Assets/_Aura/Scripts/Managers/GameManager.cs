@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour
 
 
     [SerializeField] GameObject tryAgainMenu;
+    [SerializeField] TimerUIController timerController;
     [SerializeField]List<QuizQuestionSO> quizQuestionSOs = new List<QuizQuestionSO>();
     [SerializeField] Quiz quizPage;
-    [SerializeField] int previousQuizQuestion;
     [SerializeField]int currentQuizQuestion = 0;
     public int CurrentQuizQuestion
     {
@@ -100,6 +100,10 @@ public class GameManager : MonoBehaviour
 
     #region Timer Utility
     [SerializeField]float timeToAnswer = 5f;
+    public float GetTimeToAnswer()
+    {
+        return timeToAnswer;
+    }
     [SerializeField] float currentTimer;
     private float CurrentTimer
     {
@@ -107,6 +111,7 @@ public class GameManager : MonoBehaviour
         set
         {
             currentTimer = value;
+            timerController.SetTimerFill(currentTimer);
             if (currentTimer < 0)
             {
                 //run time over event
@@ -117,7 +122,11 @@ public class GameManager : MonoBehaviour
     }
     bool timeToAnswerElapsed;
     bool runTimer;
-    private void ResetTimer()
+    public bool RunTimer
+    {
+        set { runTimer = value; }
+    }
+    public void ResetTimer()
     {
         CurrentTimer = timeToAnswer;
         runTimer = true;

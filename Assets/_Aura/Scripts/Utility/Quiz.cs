@@ -35,12 +35,14 @@ public class Quiz : MonoBehaviour
         
         if (index == currentQuizQuestionSO.GetCorrectAnswerIndex())
         {
+            AudioManager.Instance.PlayCorrectAnswerFX();
             questionTextMesh.text = "Correct!";
             answerButtons[index].GetComponent<Button>().image.sprite = correctAnswerBtnSprite;
             GameManager.Instance.GotAnswerCorrect = true;
         }
         else
         {
+            AudioManager.Instance.PlayWrongAnswerFX();
             questionTextMesh.text ="Wrong! The correct anser is\n"+
                 string.Format(" '{0}' ", currentQuizQuestionSO.GetAnswerText(correctAnswerIndex));
 
