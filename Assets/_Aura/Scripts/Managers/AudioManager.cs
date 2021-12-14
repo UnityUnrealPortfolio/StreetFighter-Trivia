@@ -7,6 +7,8 @@ public class AudioManager : MonoBehaviour
 {
     AudioSource audioSource;
     [SerializeField] UtilityController utilityController;
+    [SerializeField] Image backGroundImage;
+    [SerializeField] Sprite[] themeBackgrounds;
     [SerializeField] Slider volumeSlider;
     [SerializeField]AudioClip[] themeMusic;
     [SerializeField]AudioClip correctAnswerFX;
@@ -33,6 +35,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         audioSource = GetComponent<AudioSource>();
         PlayChosenTheme(16);
         volumeSlider.value = audioSource.volume;
@@ -40,6 +43,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayChosenTheme(int index)
     {
+        backGroundImage.sprite = themeBackgrounds[index];
         audioSource.PlayOneShot(buttonPressFX);
         audioSource.clip = themeMusic[index];
         audioSource.Play();

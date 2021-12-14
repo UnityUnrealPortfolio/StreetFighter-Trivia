@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Aura/Scenes/loadingScene.unity
+    guid: 3e7a0c00517b2fb4fb8754f5acc2f1b4
+  - enabled: 1
     path: Assets/_Aura/Scenes/Playground.unity
     guid: 5f7f68a64df931746b12aa3e8de0affe
   m_configObjects: {}
